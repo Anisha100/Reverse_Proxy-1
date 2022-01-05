@@ -1,16 +1,59 @@
-<!DOCTYPE html>
+<!-- <!DOCTYPE html>
 <html>
-<body>
 
-<h1>Student authentication</h1>
+  <body>
 
-<form action="/otpcheck" method="post">
-  <label for="fname">OTP:</label>
-  <input type="text" id="otp" name="otp"><br><br>
-  <input type="hidden" id="t1" name="t1" value="{{token1}}">
-  <input type="hidden" id="t2" name="t2" value="{{token2}}">
-  <input type="submit" value="Submit">
-</form>
+    <h1>Student authentication</h1>
 
-</body>
+    <form action="/otpcheck" method="post">
+      <label for="fname">OTP:</label>
+      <input type="text" id="otp" name="otp"><br><br>
+      <input type="hidden" id="t1" name="t1" value="{{token1}}">
+      <input type="hidden" id="t2" name="t2" value="{{token2}}">
+      <input type="submit" value="Submit">
+    </form>
+
+  </body>
+
+</html> -->
+
+<!DOCTYPE html>
+<html lang="en">
+
+  <head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./style.css">
+  </head>
+
+  <body>
+    <div class="container">
+      <div class="screen">
+        <div class="screen__content">
+          <form class="login" action="/otpcheck" method="post">
+            <div class="title">Student authentication</div>
+            <div class="login__field">
+              <i class="login__icon fas fa-lock"></i>
+              <input type="text" class="login__input" id="otp" name="otp" placeholder="OTP">
+              <input type="hidden" id="t1" name="t1" value="{{token1}}">
+              <input type="hidden" id="t2" name="t2" value="{{token2}}">
+            </div>
+            <button class="button login__submit" type="submit" value="Submit">
+              <span class="button__text">Submit Now</span>
+              <i class="button__icon fas fa-chevron-right"></i>
+            </button>
+          </form>
+        </div>
+        <div class="screen__background">
+          <span class="screen__background__shape screen__background__shape4"></span>
+          <span class="screen__background__shape screen__background__shape3"></span>
+          <span class="screen__background__shape screen__background__shape2"></span>
+          <span class="screen__background__shape screen__background__shape1"></span>
+        </div>
+      </div>
+    </div>
+
+  </body>
+
 </html>
