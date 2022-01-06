@@ -5,7 +5,7 @@
 			Instructor Portal
 		</title>
 		<script type="text/javascript" src="qrcode.js"></script>
-		<link rel="stylesheet" href="./style.css">
+		<link rel="stylesheet" href="../static/style.css">
 
 	</head>
 
@@ -15,9 +15,13 @@
 				<div class="screen__content">
 					<div class="login">
 						<div id="qrcode" style="width:300px; height:300px; margin-top:15px;"></div>
-						<p> Class id is {{cid}}. Please note this down in case this page is lost. </p>
+						<p> Class id is
+						<h3>{{cid}}</h3>. Please note this down in case this page is lost. </p>
 						<br>
-						<a href="/downloadattendance?classId={{cid}}"> Click here to download </a>
+						<button class="register-button">
+							<a href="/downloadattendance?classId={{cid}}"> Download Attendance!</a>
+						</button>
+
 					</div>
 				</div>
 				<div class="screen__background">
