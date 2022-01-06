@@ -11,6 +11,7 @@ from otp import *
 import pickle
 import string
 import random
+import re
 import os
 
 url="reverseproxy.eastus.cloudapp.azure.com" 
@@ -24,6 +25,8 @@ key2=Fernet.generate_key()
 f1=Fernet(key1)
 f2=Fernet(key2)
 credentials = []
+regex = r'\b[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Z|a-z]{2,}\b'
+
 
 @app.route("/")
 def index():
@@ -108,6 +111,25 @@ def otpcheck():
 @app.route("/success")
 def success():
 	return render_template("success.html")
+	
+@app.route("/univdb")
+def univdb():
+    return render_template("univdb.html")
+    
+@app.route("/univdbupload", methods=["POST", "GET"])
+def univdbupload():
+    if request.method == 'POST':
+      f = request.files['file']
+      k=f.read().decode().splitlines()
+      for x in k:
+          r=x.split(",")
+          for em in r:
+             em=em.strip()
+             if(re.fullmatch(regex, em)):
+                 print(em)
+                 addStudent(em)
+    return redirect("/success")
+
 	
 @app.route("/api/register/begin", methods=["POST"])
 def register_begin():

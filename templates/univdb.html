@@ -1,0 +1,17 @@
+<html>
+<head>
+<title>
+	Database Upload
+</title>
+</head>
+   <body>
+   <h1> University Database Upload </h1> <br>
+   <p>Upload file should be in CSV or TXT format with the student email ids in seperate lines.<br>
+   The student email id should contain the registration number. For example: aditya.20bcr7009@vitap.ac.in </p> <br>
+      <form action = "/univdbupload" method = "POST" 
+         enctype = "multipart/form-data">
+         <input type = "file" name = "file" accept=".csv,.txt" />
+         <input type = "submit"/>
+      </form>
+   </body>
+</html>
