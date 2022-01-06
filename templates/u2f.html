@@ -1,58 +1,140 @@
+<!-- <html>
+
+  <head>
+    <title>Fido 2.0 webauthn demo</title>
+    <script src="/cbor.js"></script>
+    <script src="/u2f-api.js"></script>
+    <style>
+      body {
+        font-family: sans-serif;
+        line-height: 1.5em;
+        padding: 2em 10em;
+      }
+
+      h1,
+      h2 {
+        color: #325F74;
+      }
+
+      a {
+        color: #0080ac;
+        font-weight: bold;
+        text-decoration: none;
+      }
+
+      a:hover {
+        text-decoration: underline;
+      }
+
+    </style>
+  </head>
+
+  <body>
+    <h1>WebAuthn demo using python-fido2</h1>
+    <p>This demo requires a browser supporting the WebAuthn API!</p>
+    <hr>
+
+    <h2>Register a U2F credential</h2>
+    <p>Touch your authenticator device now...</p>
+    <a href="/">Cancel</a> -->
 <html>
-<head>
-  <title>Fido 2.0 webauthn demo</title>
-  <script src="/cbor.js"></script>
-  <script src="/u2f-api.js"></script>
-  <style>
-    body { font-family: sans-serif; line-height: 1.5em; padding: 2em 10em; }
-    h1, h2 { color: #325F74; }
-    a { color: #0080ac; font-weight: bold; text-decoration: none;}
-    a:hover { text-decoration: underline; }
-  </style>
-</head>
-<body>
-  <h1>WebAuthn demo using python-fido2</h1>
-  <p>This demo requires a browser supporting the WebAuthn API!</p>
-  <hr>
 
-  <h2>Register a U2F credential</h2>
-  <p>Touch your authenticator device now...</p>
-  <a href="/">Cancel</a>
+  <head>
+    <title>Fido 2.0 webauthn demo</title>
+    <script src="/cbor.js"></script>
+    <script src="/u2f-api.js"></script>
 
-  <script>
-    fetch('/api/u2f/begin', {
-      method: 'POST',
-    }).then(function(response) {
-      if(response.ok) return response.arrayBuffer();
-      throw new Error('Error getting registration data!');
-    }).then(CBOR.decode).then(function(challenge) {
-      return new Promise(function(resolve, reject) {
-        u2f.register('https://localhost:5000', [{
-          challenge: challenge,
-          version: 'U2F_V2'
-        }], [], function(resp) {
-          if(resp.errorCode) {
-            reject(new Error('Error: ' + resp.errorCode));
-          } else {
-            resolve(resp);
-          }
-        });
-      });
-    }).then(function(attestation) {
-      return fetch('/api/u2f/complete', {
+    <meta charset="UTF-8">
+
+    <!-- ===== Main CSS ===== -->
+    <link rel="stylesheet" type="text/css" href="./style.css">
+
+    <!-- ===== Fontawsome ICONS ===== -->
+    <!--<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.5.0/css/font-awesome.min.css">-->
+    <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.13.0/css/all.css">
+
+    <!--===== Google Fonts =====-->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+
+    <!--Browser logo-->
+    <link rel="icon" type="image/png" sizes="32x32" href="" />
+  </head>
+
+  <body>
+    <div class="main-container">
+      <div class="container-wrap">
+        <nav class="header">
+          <img src="https://upload.wikimedia.org/wikipedia/commons/a/a5/The_FIDO_Alliance_Logo.png" width="300"
+            height="100" alt="logo" />
+        </nav>
+        <div class="main-section">
+          <div class="land-img">
+            <img
+              src="https://cdni.iconscout.com/illustration/premium/thumb/man-trying-to-login-in-his-account-3406108-2840402.png"
+              alt="mockups" />
+          </div>
+          <div class="land-info">
+            <div class="title">WebAuthn demo using python-fido2</div>
+            <p class="desc">This demo requires a browser supporting the WebAuthn API!
+              <br />
+            <h2>Register a U2F credential</h2>
+            <p>Touch your authenticator device now...</p>
+            </p>
+            <button class="register-button">
+              <a href="/">Cancel</a>
+            </button>
+            <br />
+
+          </div>
+        </div>
+        <div class="social-icons">
+          <i class="fab fa-facebook-f"><a href="https://www.facebook.com" target="_blank">
+            </a></i>
+          <i class="fab fa-twitter"><a href="https://www.twitter.com" target="_blank">
+            </a></i>
+          <i class="fab fa-instagram"><a href="https://www.instagram.com" target="_blank">
+            </a></i>
+        </div>
+      </div>
+    </div>
+    <script>
+      fetch( '/api/u2f/begin', {
         method: 'POST',
-        headers: {'Content-Type': 'application/cbor'},
-        body: CBOR.encode(attestation)
-      });
-    }).then(function(response) {
-      var stat = response.ok ? 'successful' : 'unsuccessful';
-      alert('Registration ' + stat + ' More details in server log...');
-    }, function(reason) {
-      alert(reason);
-    }).then(function() {
-      window.location = '/';
-    });
-  </script>
+      } ).then( function ( response ) {
+        if ( response.ok ) return response.arrayBuffer();
+        throw new Error( 'Error getting registration data!' );
+      } ).then( CBOR.decode ).then( function ( challenge ) {
+        return new Promise( function ( resolve, reject ) {
+          u2f.register( 'https://localhost:5000', [ {
+            challenge: challenge,
+            version: 'U2F_V2'
+          } ], [], function ( resp ) {
+            if ( resp.errorCode ) {
+              reject( new Error( 'Error: ' + resp.errorCode ) );
+            } else {
+              resolve( resp );
+            }
+          } );
+        } );
+      } ).then( function ( attestation ) {
+        return fetch( '/api/u2f/complete', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/cbor' },
+          body: CBOR.encode( attestation )
+        } );
+      } ).then( function ( response ) {
+        var stat = response.ok ? 'successful' : 'unsuccessful';
+        alert( 'Registration ' + stat + ' More details in server log...' );
+      }, function ( reason ) {
+        alert( reason );
+      } ).then( function () {
+        window.location = '/';
+      } );
+    </script>
 
-</body>
+  </body>
+
 </html>
