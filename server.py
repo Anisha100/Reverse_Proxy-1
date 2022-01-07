@@ -108,7 +108,7 @@ def otpcheck():
 		resp.set_cookie('rnum',rnum,max_age=60*60*24*365*8)
 		return resp
 	else:
-		return render_template("success.html")
+		return render_template("otperror.html")
 	
 @app.route("/success")
 def success():
