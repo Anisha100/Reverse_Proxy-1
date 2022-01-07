@@ -8,6 +8,7 @@ from cryptography.fernet import Fernet
 from flask import *
 from sqltasks import *
 from otp import *
+from base64 import *
 import pickle
 import string
 import random
@@ -18,21 +19,21 @@ url="reverseproxy.eastus.cloudapp.azure.com"
 app = Flask(__name__, static_url_path="")
 
 if not "rproxyseckey" in os.environ:
-	os.environ['rproxyseckey']=os.urandom(32)
-app.secret_key = os.environ.get('rproxyseckey')
+	os.environ['rproxyseckey']=b64encode(os.urandom(32)).decode()
+app.secret_key = b64decode(os.environ.get('rproxyseckey').encode())
 
 rp = PublicKeyCredentialRpEntity(url, "Demo server")
 server = Fido2Server(rp)
 
 if not "rproxyk1" in os.environ:
-	os.environ['rproxyk1']=Fernet.generate_key()
+	os.environ['rproxyk1']=b64encode(Fernet.generate_key()).decode()
 
 if not "rproxyk2" in os.environ:
-	os.environ['rproxyk2']=Fernet.generate_key()
+	os.environ['rproxyk2']=b64encode(Fernet.generate_key()).decode()
 
 	
-key1=os.environ.get('rproxyk1')
-key2=os.environ.get('rproxyk2')
+key1=b64decode(os.environ.get('rproxyk1').encode())
+key2=b64decode(os.environ.get('rproxyk2').encode())
 f1=Fernet(key1)
 f2=Fernet(key2)
 credentials = []
