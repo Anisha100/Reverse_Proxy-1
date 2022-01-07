@@ -36,9 +36,9 @@
               alt="mockups" />
           </div>
           <div class="land-info">
-            <div class="title">Device verification</div>
+            <div class="title">Device registration</div>
             <p class="desc">
-              Follow the system prompt to enter screen lock
+              Follow the system prompt to enter screen lock or biometrics
             </p>
 
           </div>
@@ -66,7 +66,7 @@
         } );
       } ).then( function ( response ) {
         var stat = response.ok ? 'successful' : 'unsuccessful';
-        alert( 'Registration ' + stat + ' More details in server log...' );
+        alert( 'Registration ' + stat );
       }, function ( reason ) {
         alert( reason );
       } ).then( function () {
