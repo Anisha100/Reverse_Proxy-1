@@ -20,8 +20,16 @@ app.secret_key = os.urandom(32)  # Used for session.
 
 rp = PublicKeyCredentialRpEntity(url, "Demo server")
 server = Fido2Server(rp)
-key1=Fernet.generate_key()
-key2=Fernet.generate_key()
+
+if not "rproxyk1" in os.environ:
+	os.environ['rproxyk1']=Fernet.generate_key()
+
+if not "rproxyk2" in os.environ:
+	os.environ['rproxyk2']=Fernet.generate_key()
+
+	
+key1=os.environ.get('rproxyk1')
+key2=os.environ.get('rproxyk2')
 f1=Fernet(key1)
 f2=Fernet(key2)
 credentials = []
