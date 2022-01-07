@@ -18,31 +18,31 @@ import os
 url="reverseproxy.eastus.cloudapp.azure.com" 
 app = Flask(__name__, static_url_path="")
 
-#f = open("sample.txt", "wb")
+filepth='/home/vm_user/Reverse_Proxy/userfiles/'
 
 if not path.exists('rproxyseckey.pkl'):
-	outp3=open('rproxyseckey.pkl','wb')
+	outp3=open(filepth+'rproxyseckey.pkl','wb')
 	pickle.dump(os.urandom(32),outp3,pickle.HIGHEST_PROTOCOL)
 	outp3.close()
 
-inp3=open('rproxyseckey.pkl', 'rb')
+inp3=open(filepth+'rproxyseckey.pkl', 'rb')
 app.secret_key = pickle.load(inp3)
 
 rp = PublicKeyCredentialRpEntity(url, "Demo server")
 server = Fido2Server(rp)
 
-if not path.exists('fernetkey1.pkl'):
-	with open('fernetkey1.pkl','wb') as outp1:
+if not path.exists(filepth+'fernetkey1.pkl'):
+	with open(filepth+'fernetkey1.pkl','wb') as outp1:
 		pickle.dump(Fernet.generate_key(),outp1,pickle.HIGHEST_PROTOCOL)
 
-if not path.exists('fernetkey2.pkl'):
-	with open('fernetkey2.pkl','wb') as outp2:
+if not path.exists(filepth+'fernetkey2.pkl'):
+	with open(filepth+'fernetkey2.pkl','wb') as outp2:
 		pickle.dump(Fernet.generate_key(),outp2,pickle.HIGHEST_PROTOCOL)
 
 	
-inp1=open('fernetkey1.pkl', 'rb')
+inp1=open(filepth+'fernetkey1.pkl', 'rb')
 key1=pickle.load(inp1)
-inp2=open('fernetkey2.pkl', 'rb')
+inp2=open(filepth+'fernetkey2.pkl', 'rb')
 key2=pickle.load(inp2)
 f1=Fernet(key1)
 f2=Fernet(key2)
@@ -243,13 +243,13 @@ def authenticate_complete():
     return cbor.encode({"status": "OK"})
     
 def savekey(credentials,user):
-	with open(user+'datafilekey.pkl','wb') as outp1:
+	with open(filepth+user+'datafilekey.pkl','wb') as outp1:
 		pickle.dump(credentials,outp1,pickle.HIGHEST_PROTOCOL)
 		
 def readkey(user):
 	print(user)
 	try:
-		with open(user+'datafilekey.pkl', 'rb') as inp:
+		with open(filepth+user+'datafilekey.pkl', 'rb') as inp:
 			temp = pickle.load(inp)
 			print("Data read")
 			#print(credentials)
