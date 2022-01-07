@@ -30,7 +30,7 @@ regex = r'\b[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Z|a-z]{2,}\b'
 
 @app.route("/")
 def index():
-    return redirect("/success")
+    return render_template("index.html")
 
 @app.route("/reg")
 def reg():
