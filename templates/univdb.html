@@ -1,17 +1,62 @@
 <html>
-<head>
-<title>
-	Database Upload
-</title>
-</head>
+
+   <head>
+      <title>
+         Database Upload
+
+      </title>
+      <meta charset="UTF-8">
+
+      <!-- ===== Main CSS ===== -->
+      <link rel="stylesheet" type="text/css" href="./style.css">
+
+      <!-- ===== Fontawsome ICONS ===== -->
+      <!--<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.5.0/css/font-awesome.min.css">-->
+      <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.13.0/css/all.css">
+
+      <!--===== Google Fonts =====-->
+      <link rel="preconnect" href="https://fonts.googleapis.com">
+      <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+      <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+
+      <!--Browser logo-->
+      <link rel="icon" type="image/png" sizes="32x32" href="" />
+   </head>
+
    <body>
-   <h1> University Database Upload </h1> <br>
-   <p>Upload file should be in CSV or TXT format with the student email ids in seperate lines.<br>
-   The student email id should contain the registration number. For example: aditya.20bcr7009@vitap.ac.in </p> <br>
-      <form action = "/univdbupload" method = "POST" 
-         enctype = "multipart/form-data">
-         <input type = "file" name = "file" accept=".csv,.txt" />
-         <input type = "submit"/>
-      </form>
+      <div class="main-container">
+         <div class="container-wrap">
+            <nav class="header">
+               <img src="https://upload.wikimedia.org/wikipedia/commons/a/a5/The_FIDO_Alliance_Logo.png" width="300"
+                  height="100" alt="logo" />
+            </nav>
+            <div class="main-section">
+               <div class="land-img">
+                  <img src="https://www.aapta.in/wp-content/uploads/2019/01/superfast-wordpress-servers.png" width="500"
+                     alt="mockups" />
+               </div>
+               <div class="land-info">
+                  <div class="title">University Database Upload</div>
+                  <p class="desc">Upload file should be in CSV or TXT format with the student email ids in seperate
+                     lines.<br>
+                     The student email id should contain the registration number. For example:
+                     aditya.20bcr7009@vitap.ac.in
+                  </p>
+                  <form action="/univdbupload" method="POST" enctype="multipart/form-data">
+                     <input type="file" name="file" accept=".csv,.txt" />
+                     <button class="register-button" type="submit">
+                        <a href="/register.html">Submit</a>
+                     </button>
+
+                  </form>
+               </div>
+            </div>
+
+         </div>
+      </div>
+
+
    </body>
+
 </html>
