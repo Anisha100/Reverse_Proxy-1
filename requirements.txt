@@ -4,3 +4,4 @@ pickle-mixin
 fido2
 pyodbc
 cryptography
+regex
