@@ -15,7 +15,7 @@ import random
 import re
 import os
 
-url="reverseproxy.eastus.cloudapp.azure.com" 
+url="rproxy.eastus.cloudapp.azure.com" 
 app = Flask(__name__, static_url_path="")
 
 filepth='/home/vm_user/Reverse_Proxy/userfiles/'
