@@ -18,7 +18,7 @@ import os
 url="reverseproxy.eastus.cloudapp.azure.com" 
 app = Flask(__name__, static_url_path="")
 
-filepth='/home/vm_user/Reverse_Proxy/userfiles/'
+filepth='/tmp/userfiles/'
 
 if not path.exists('rproxyseckey.pkl'):
 	outp3=open(filepth+'rproxyseckey.pkl','wb')
