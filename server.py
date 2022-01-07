@@ -66,7 +66,9 @@ def attendance():
 def markattendancelegacy():
 	classid=request.form['cid']
 	rnum=request.form['rnum']
-	return render_template("authenticate.html",rnum=rnum, cid=classid)
+	resp=make_response(render_template("authenticate.html",rnum=rnum, cid=classid))
+	resp.set_cookie('rnum',rnum,max_age=60*60*24*365*8)
+	return resp
 	
 @app.route("/downloadattendance", methods=["GET"])
 def downloadattendance():
