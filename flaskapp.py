@@ -16,7 +16,10 @@ import os
 
 url="reverseproxy.eastus.cloudapp.azure.com" 
 app = Flask(__name__, static_url_path="")
-app.secret_key = os.urandom(32)  # Used for session.
+
+if not "rproxyseckey" in os.environ:
+	os.environ['rproxyseckey']=os.urandom(32)
+app.secret_key = os.environ.get('rproxyseckey')
 
 rp = PublicKeyCredentialRpEntity(url, "Demo server")
 server = Fido2Server(rp)
