@@ -12,7 +12,6 @@ from os import path
 import pickle
 import string
 import random
-import re
 import os
 
 url="rproxy.eastus.cloudapp.azure.com" 
@@ -47,8 +46,6 @@ key2=pickle.load(inp2)
 f1=Fernet(key1)
 f2=Fernet(key2)
 credentials = []
-regex = r'\b[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Z|a-z]{2,}\b'
-
 
 @app.route("/")
 def index():
@@ -149,7 +146,7 @@ def univdbupload():
           r=x.split(",")
           for em in r:
              em=em.strip()
-             if(re.fullmatch(regex, em)):
+             if '@' in em:
                  print(em)
                  addStudent(em)
     return redirect("/success")
