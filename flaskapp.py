@@ -8,7 +8,7 @@ from cryptography.fernet import Fernet
 from flask import *
 from sqltasks import *
 from otp import *
-from base64 import *
+from os import path
 import pickle
 import string
 import random
@@ -18,22 +18,32 @@ import os
 url="reverseproxy.eastus.cloudapp.azure.com" 
 app = Flask(__name__, static_url_path="")
 
-if not "rproxyseckey" in os.environ:
-	os.environ['rproxyseckey']=b64encode(os.urandom(32)).decode()
-app.secret_key = b64decode(os.environ.get('rproxyseckey').encode())
+#f = open("sample.txt", "wb")
+
+if not path.exists('rproxyseckey.pkl'):
+	outp3=open('rproxyseckey.pkl','wb')
+	pickle.dump(os.urandom(32),outp3,pickle.HIGHEST_PROTOCOL)
+	outp3.close()
+
+inp3=open('rproxyseckey.pkl', 'rb')
+app.secret_key = pickle.load(inp3)
 
 rp = PublicKeyCredentialRpEntity(url, "Demo server")
 server = Fido2Server(rp)
 
-if not "rproxyk1" in os.environ:
-	os.environ['rproxyk1']=b64encode(Fernet.generate_key()).decode()
+if not path.exists('fernetkey1.pkl'):
+	with open('fernetkey1.pkl','wb') as outp1:
+		pickle.dump(Fernet.generate_key(),outp1,pickle.HIGHEST_PROTOCOL)
 
-if not "rproxyk2" in os.environ:
-	os.environ['rproxyk2']=b64encode(Fernet.generate_key()).decode()
+if not path.exists('fernetkey2.pkl'):
+	with open('fernetkey2.pkl','wb') as outp2:
+		pickle.dump(Fernet.generate_key(),outp2,pickle.HIGHEST_PROTOCOL)
 
 	
-key1=b64decode(os.environ.get('rproxyk1').encode())
-key2=b64decode(os.environ.get('rproxyk2').encode())
+inp1=open('fernetkey1.pkl', 'rb')
+key1=pickle.load(inp1)
+inp2=open('fernetkey2.pkl', 'rb')
+key2=pickle.load(inp2)
 f1=Fernet(key1)
 f2=Fernet(key2)
 credentials = []
