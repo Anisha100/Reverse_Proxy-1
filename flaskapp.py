@@ -18,9 +18,9 @@ import os
 url="reverseproxy.eastus.cloudapp.azure.com" 
 app = Flask(__name__, static_url_path="")
 
-filepth='/tmp/userfiles/'
+filepth='/home/vm_user/Reverse_Proxy/userfiles/'
 
-if not path.exists('rproxyseckey.pkl'):
+if not path.exists(filepth+'rproxyseckey.pkl'):
 	outp3=open(filepth+'rproxyseckey.pkl','wb')
 	pickle.dump(os.urandom(32),outp3,pickle.HIGHEST_PROTOCOL)
 	outp3.close()
