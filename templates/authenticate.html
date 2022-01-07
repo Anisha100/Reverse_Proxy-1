@@ -36,9 +36,9 @@
           </div>
           <div class="land-info">
             <div class="title">Student verification</div>
-            <p class="desc">Authenticate using a credential.
+            <p class="desc">Student authentication
               <br />
-              Follow the system prompt to enter screen lock
+              Follow the system prompt to enter screen lock or biometrics.
             </p>
 
           </div>
@@ -69,11 +69,11 @@
         } )
       } ).then( function ( response ) {
         var stat = response.ok ? 'successful' : 'unsuccessful';
-        alert( 'Authentication ' + stat + ' More details in server log...' );
+        alert( 'Marking attendance ' + stat );
       }, function ( reason ) {
         alert( reason );
       } ).then( function () {
-        window.location = '/success';
+        window.location = '/';
       } );
     </script>
 
