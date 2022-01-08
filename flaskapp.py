@@ -57,19 +57,22 @@ def reg():
 
 @app.route("/reginit", methods=["POST"])
 def reginit():
-	rnum=request.form['rnum']
-	rnum=rnum.strip()
-	o=genOtp()
-	em=getEmail(rnum)
-	print(rnum)
-	print(o)
-	print(em)
-	t1=f1.encrypt(rnum.encode()).decode()
-	t2=f2.encrypt(o.encode()).decode()
-	print(t1)
-	print(t2)
-	sendEmail(em,o)
-	return render_template("otpauth.html",token1=t1,token2=t2)
+	try:
+		rnum=request.form['rnum']
+		rnum=rnum.strip()
+		o=genOtp()
+		em=getEmail(rnum)
+		print(rnum)
+		print(o)
+		print(em)
+		t1=f1.encrypt(rnum.encode()).decode()
+		t2=f2.encrypt(o.encode()).decode()
+		print(t1)
+		print(t2)
+		sendEmail(em,o)
+		return render_template("otpauth.html",token1=t1,token2=t2)
+	except:
+		return render_template("error.html",reason='Registration number does not exist. Contact admin.')
 
 @app.route("/markattendance", methods=["GET"])
 def markattendance():
@@ -130,7 +133,7 @@ def otpcheck():
 		resp.set_cookie('rnum',rnum,max_age=60*60*24*365*8)
 		return resp
 	else:
-		return render_template("otperror.html")
+		return render_template("error.html", reason='Incorrect OTP.')
 	
 @app.route("/success")
 def success():
