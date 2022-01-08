@@ -1,3 +1,5 @@
+#Copy these lines and paste it on cloud VM ssh terminal to reload code from this repository.
+
 cd ~
 rm -rf Reverse_Proxy
 git clone https://github.com/AdityaMitra5102/Reverse_Proxy
