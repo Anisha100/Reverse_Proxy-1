@@ -6,3 +6,5 @@ chmod 777 userfiles
 sudo chmod 777 userfiles
 sudo rm /var/log/apache2/error.log
 sudo service apache2 restart
+ 
+ 
