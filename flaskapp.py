@@ -73,9 +73,12 @@ def reginit():
 
 @app.route("/markattendance", methods=["GET"])
 def markattendance():
-	classid=request.args.get('classId')
-	rnum=request.cookies.get('rnum')
-	return render_template("authenticate.html",rnum=rnum, cid=classid)
+	try:
+		classid=request.args.get('classId')
+		rnum=request.cookies.get('rnum')
+		return render_template("authenticate.html",rnum=rnum, cid=classid)
+	except:
+		return redirect("/attendance")
 	
 @app.route("/attendance")
 def attendance():
