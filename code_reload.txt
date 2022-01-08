@@ -1,0 +1,8 @@
+cd ~
+rm -rf Reverse_Proxy
+git clone https://github.com/AdityaMitra5102/Reverse_Proxy
+cd Reverse_Proxy
+chmod 777 userfiles
+sudo chmod 777 userfiles
+sudo rm /var/log/apache2/error.log
+sudo service apache2 restart
