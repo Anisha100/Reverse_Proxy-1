@@ -9,7 +9,7 @@ which is more seamless than the currently used digital attendance systems. It ca
 education modes seamlessly. Our amazing and hardworking team includes Aditya Mitra, Rishita Shaw, Anisha Ghosh and Samhita. 
 <br><br>
 
-# For instructions on how to use this project, click [here](./instructions.pdf)
+# For instructions on how to use this project, click [here](./Instructions.pdf)
 
 ## Links to the project:
 [University database upload](https://adityamitra5102.github.io/Reverse_Proxy/univ) <br>
