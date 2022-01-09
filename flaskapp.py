@@ -145,17 +145,20 @@ def univdb():
     
 @app.route("/univdbupload", methods=["POST", "GET"])
 def univdbupload():
-    if request.method == 'POST':
-      f = request.files['file']
-      k=f.read().decode().splitlines()
-      for x in k:
-          r=x.split(",")
-          for em in r:
-             em=em.strip()
-             if '@' in em:
-                 print(em)
-                 addStudent(em)
-    return redirect("/success")
+    try:
+        if request.method == 'POST':
+          f = request.files['file']
+          k=f.read().decode().splitlines()
+          for x in k:
+              r=x.split(",")
+              for em in r:
+                 em=em.strip()
+                 if '@' in em:
+                     print(em)
+                     addStudent(em)
+        return redirect("/success")
+    except:
+	return render_template("error.html",reason='No file uploaded or corrupted file.')
 
 	
 @app.route("/api/register/begin", methods=["POST"])
