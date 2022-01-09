@@ -32,8 +32,8 @@
                   height="100" alt="logo" />
             </nav>
             <div class="main-section">
-               <div class="land-img">
-                  <img src="https://www.aapta.in/wp-content/uploads/2019/01/superfast-wordpress-servers.png" width="500"
+               <div id="spinner" class="land-img">
+                  <img src="https://www.aapta.in/wp-content/uploads/2019/01/superfast-wordpress-servers.png" width="500" id="img"
                      alt="mockups" />
                </div>
                <div class="land-info">
@@ -46,17 +46,52 @@
                   </p>
                   <form action="/univdbupload" method="POST" enctype="multipart/form-data">
                      <input type="file" name="file" accept=".csv,.txt" />
-                     <button class="register-button" type="submit">
+                  
+                     <button class="register-button" type="submit" onclick="spinner()" >
                         Submit
                      </button>
+				
+				</form>
 
-                  </form>
-               </div>
+                    </div>
             </div>
 
          </div>
       </div>
+	
+</div>
 
+<style type="text/css">
+.loader {
+  border: 16px solid #f3f3f3;
+  border-radius: 50%;
+  border-top: 16px solid blue;
+  border-right: 16px solid green;
+  border-bottom: 16px solid red;
+  width: 120px;
+  height: 120px;
+  -webkit-animation: spin 2s linear infinite;
+  animation: spin 2s linear infinite;
+}
+
+@-webkit-keyframes spin {
+  0% { -webkit-transform: rotate(0deg); }
+  100% { -webkit-transform: rotate(360deg); }
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+</style>
+
+<script type="text/javascript">
+    function spinner() {
+    document.getElementById("img").remove();
+    document.getElementById("spinner").className = "loader";
+       
+    }
+</script>
 
    </body>
 
