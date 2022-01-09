@@ -9,7 +9,8 @@ which is more seamless than the currently used digital attendance systems. It ca
 education modes seamlessly. Our amazing and hardworking team includes Aditya Mitra, Rishita Shaw, Anisha Ghosh and Samhita. 
 <br><br>
 
-# For instructions on how to use this project, click [here](./Instructions.pdf)
+# For instructions on how to use this project, click [here](./Instructions.pdf) <br>
+# For Imagine Cup Project Proposal of this project, click [here](./Reverse_Proxy_Proposal.pdf)
 
 ## Links to the project:
 [University database upload](https://adityamitra5102.github.io/Reverse_Proxy/univ) <br>
